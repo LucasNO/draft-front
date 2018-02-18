@@ -29,14 +29,38 @@
         </table>
       </div><!--// .container -->
 
-      <script src="js/jquery-3.3.1.min.js"></script>
+      <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script>
+      function savePosicao() {
+        var posicao = document.getElementById('posicao').value;
+        var data = '{"descricao":"'+ posicao + '"' +'}';
+        console.log(data);
+          $.ajax({
+              type: 'POST',
+              url: "https://draft-webservice.herokuapp.com/draft/posicao",
+              // url: "http://localhost:8080/draft/posicao",
+              dataType: 'json',
+              contentType: 'application/json',
+              data : data,
+              success : function(result) {
+                    console.log(result);
+                },
+              error: function (xhr, status, error) {
+                  console.log("error: " + xhr.status);
+              }
+          }); //ajax
+        }
+
       function listPosicoes() {
           $.ajax({
               type: 'GET',
               url: "https://draft-webservice.herokuapp.com/draft/posicoes",
+              // url: "http://localhost:8080/draft/posicoes",
               dataType: 'json',
               contentType: 'application/json',
               success: function (data, textStatus, xhr) {
@@ -53,27 +77,6 @@
               }
           }); //ajax
         }
-
-        function savePosicao() {
-          var posicao = document.getElementById('posicao').value;
-          var data = '{"descricao":"'+ posicao + '"' +'}';
-          console.log(data);
-            $.ajax({
-                type: 'POST',
-                url: "https://draft-webservice.herokuapp.com/draft/posicao",
-                dataType: 'json',
-                contentType: 'application/json',
-                data : data,
-
-                success : function(result) {
-                      console.log(result);
-                  },
-                error: function (xhr, status, error) {
-                    console.log("error: " + xhr.status);
-                }
-            }); //ajax
-          }
-
       </script>
   </body>
 </html>
