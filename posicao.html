@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Posição</title>
@@ -13,50 +13,46 @@
 
   <body onload="listPosicoes();">
       <div class="container">
-        <form id='posicaoForm'>
+        <form id='posicaoForm' onsubmit="savePosicao();">
           <div class="form-group"><input id="id" type='number' name='ID' hidden /></div>
           <div class="form-group"><input id="posicao" type='text' name='Posição' placeholder='Nome da Posição' /></div>
-          <div class="form-group"><input type='submit' onclick="savePosicao();" value='Salvar' /></div>
+          <div class="form-group"><input type='submit' value='Salvar' /></div>
         </form>
         <!-- <div id='response'></div> -->
         <table id="posicoes" class="table" cellspacing="0" width="100%" >
             <thead class="thead-dark">
                 <tr>
-                    <th data-field="id">ID</th>
                     <th data-field="descricao">Posição</th>
                 </tr>
             </thead>
         </table>
       </div><!--// .container -->
 
-      <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
+      <script src="js/jquery-3.3.1.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script>
       function savePosicao() {
         var posicao = document.getElementById('posicao').value;
-        var data = '{"descricao":"'+ posicao + '"' +'}';
-        console.log(data);
-          $.ajax({
-              type: 'POST',
-              url: "https://draft-webservice.herokuapp.com/draft/posicao",
-              // url: "http://localhost:8080/draft/posicao",
-              dataType: 'json',
-              contentType: 'application/json',
-              data : data,
-              success : function(result) {
-                    console.log(result);
-                },
-              error: function (xhr, status, error) {
-                  console.log("error: " + xhr.status);
-              }
+        var dado = {descricao:posicao};
+        var parametros = JSON.stringify(dado);
+        $.ajax({
+            type: 'POST',
+            url: 'https://draft-webservice.herokuapp.com/draft/posicao',
+            contentType: "application/json",
+            data: parametros,
+            dataType: "text",
+            success: function( data, textStatus, jQxhr ){
+              console.log(textStatus);
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
           }); //ajax
         }
 
       function listPosicoes() {
+        console.log("Passou Aqui!!!");
           $.ajax({
               type: 'GET',
               url: "https://draft-webservice.herokuapp.com/draft/posicoes",
@@ -67,7 +63,6 @@
                   $.each(data,function(i,item){
                     $("#posicoes").append(
                       "<tr>"
-                      +"<td>"+item.id+"</td>"
                       +"<td>"+item.descricao+"</td>"
                       +"</tr>" )
                   })
