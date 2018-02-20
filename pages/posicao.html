@@ -7,16 +7,16 @@
 
     <title>Posição</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
   </head>
 
   <body onload="listPosicoes();">
       <div class="container">
-        <form id='posicaoForm' onsubmit="savePosicao();">
+        <form id='posicaoForm'>
           <div class="form-group"><input id="id" type='number' name='ID' hidden /></div>
           <div class="form-group"><input id="posicao" type='text' name='Posição' placeholder='Nome da Posição' /></div>
-          <div class="form-group"><input type='submit' value='Salvar' /></div>
+          <div class="form-group"><input type='submit' onclick="savePosicao();" value='Salvar' /></div>
         </form>
         <!-- <div id='response'></div> -->
         <table id="posicoes" class="table" cellspacing="0" width="100%" >
@@ -28,9 +28,9 @@
         </table>
       </div><!--// .container -->
 
-      <script src="js/jquery-3.3.1.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
+      <script src="../js/jquery-3.3.1.min.js"></script>
+      <script src="../js/popper.min.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
       <script>
       function savePosicao() {
         var posicao = document.getElementById('posicao').value;
@@ -56,7 +56,6 @@
           $.ajax({
               type: 'GET',
               url: "https://draft-webservice.herokuapp.com/draft/posicoes",
-              // url: "http://localhost:8080/draft/posicoes",
               dataType: 'json',
               contentType: 'application/json',
               success: function (data, textStatus, xhr) {
