@@ -29,13 +29,19 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/draft.js"></script>
     <script>
         function listFreeAgents() {
+            var auth = window.localStorage.getItem("authorization");
             $.ajax({
                 type: 'GET',
-                url: "https://draft-webservice.herokuapp.com/draft/free-agents",
+                //                url: "https://draft-webservice.herokuapp.com/draft/free-agents",
+                url: "https//localhost:8080/draft/free-agents",
                 dataType: 'json',
                 contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("authorization", auth);
+                },
                 success: function(data, textStatus, xhr) {
                     $.each(data, function(i, item) {
                         $("#freeAgents").append(
