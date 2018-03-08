@@ -5,10 +5,11 @@
 
 html {
   overflow-y: scroll;
+    background: rgba(19, 35, 47, 0.9);;
 }
 
 body {
-  background: #c1bdba;
+  background: rgb(19, 35, 47);;
   font-family: 'Titillium Web', sans-serif;
 }
 

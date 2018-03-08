@@ -1,12 +1,11 @@
 function listMeuTime() {
     var auth = window.sessionStorage.getItem("authorization");
     $('#time td').remove();
-    var email = window.localStorage.getItem("email");
-    alert(email);
+    var nome = window.localStorage.getItem("nome");
     $.ajax({
         type: 'GET',
-        //              url: "https://draft-webservice.herokuapp.com/draft/posicoes",
-        url: "http://localhost:8080/draft/time/" + email,
+        //              url: "https://draft-webservice.herokuapp.com/draft/time",
+        url: "http://localhost:8080/draft/time/" + nome,
         dataType: 'json',
         contentType: 'application/json',
         beforeSend: function (xhr) {
@@ -14,7 +13,7 @@ function listMeuTime() {
         },
         success: function (data, textStatus, xhr) {
             $.each(data, function (i, item) {
-                $("#posicoes").append(
+                $("#time").append(
                     "<tr>" +
                     "<td>" + item.nome + "</td>" +
                     "<td>" + item.overall + "</td>" +

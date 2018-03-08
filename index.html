@@ -126,7 +126,6 @@
                 dataType: "text",
                 async: "false",
                 success: function(data, textStatus, jQxhr) {
-                    alert(textStatus);
                     $(location).attr('href', 'pages/home.html');
                     window.localStorage.setItem("nome", nome);
                     window.localStorage.setItem("senha", senha);
@@ -134,11 +133,9 @@
                     console.log(textStatus);
                 },
                 error: function(jqXhr, textStatus, errorThrown) {
-                    alert(errorThrown);
                     console.log(errorThrown);
-                    alert(textStatus);
                     console.log(textStatus);
-                    alert(jqXhr);
+                    console.log(jqXhr);
 
                 }
             }); //ajax
@@ -152,6 +149,8 @@
             createUser();
         });
         $("#loginUserButton").click(function() {
+
+            event.preventDefault();
 
             var nomeLogin = document.getElementById('nomeLogin').value;
             var senhaLogin = document.getElementById('passwordLogin').value;
