@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Free Agents</title>
@@ -13,6 +12,7 @@
 </head>
 
 <body onload="listFreeAgents();">
+   <header></header>
     <div class="container">
         <table id="freeAgents" class="table" cellspacing="0" width="100%">
             <thead class="thead-dark">
@@ -32,11 +32,11 @@
     <script src="../js/draft.js"></script>
     <script>
         function listFreeAgents() {
-            var auth = window.localStorage.getItem("authorization");
+            var auth = window.sessionStorage.getItem("authorization");
             $.ajax({
                 type: 'GET',
                 //                url: "https://draft-webservice.herokuapp.com/draft/free-agents",
-                url: "https//localhost:8080/draft/free-agents",
+                url: "http://localhost:8080/draft/free-agents",
                 dataType: 'json',
                 contentType: 'application/json',
                 beforeSend: function(xhr) {

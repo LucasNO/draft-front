@@ -27,9 +27,9 @@
 
                     <div class="field-wrap">
                         <label>
-              Email<span class="req">*</span>
+              Nome<span class="req">*</span>
             </label>
-                        <input id="emailLogin" type="email" required autocomplete="off" />
+                        <input id="nomeLogin" required autocomplete="off" />
                     </div>
 
                     <div class="field-wrap">
@@ -94,7 +94,6 @@
                 senha: senha
             };
             var parametros = JSON.stringify(dado);
-            console.log(parametros);
             $.ajax({
                 type: 'POST',
                 //                url: 'https://draft-webservice.herokuapp.com/draft/sign-up',
@@ -112,20 +111,9 @@
             $('#createUserForm input').val("");
         }
 
-        function loginUser() {
-            var email;
-            var senha;
-
-            if (email !== '' && senha !== '' && email !== null && senha !== null) {
-                email = window.localStorage.getItem("email");
-                senha = window.localStorage.getItem("senha");
-            } else {
-                email = document.getElementById('emailLogin').value;
-                senha = document.getElementById('passwordLogin').value;
-            }
-
+        function loginUser(nome, senha) {
             var dado = {
-                email: email,
+                nome: nome,
                 senha: senha
             };
             var parametros = JSON.stringify(dado);
@@ -136,67 +124,47 @@
                 contentType: "application/json",
                 data: parametros,
                 dataType: "text",
+                async: "false",
                 success: function(data, textStatus, jQxhr) {
-                    window.localStorage.setItem("email", email);
+                    alert(textStatus);
+                    $(location).attr('href', 'pages/home.html');
+                    window.localStorage.setItem("nome", nome);
                     window.localStorage.setItem("senha", senha);
-                    window.localStorage.setItem("authorization", data);
-
-                    $(location).attr('href', 'pages/posicao.html');
+                    window.sessionStorage.setItem("authorization", data);
+                    console.log(textStatus);
                 },
                 error: function(jqXhr, textStatus, errorThrown) {
+                    alert(errorThrown);
                     console.log(errorThrown);
+                    alert(textStatus);
+                    console.log(textStatus);
+                    alert(jqXhr);
+
                 }
             }); //ajax
-        }
 
+
+        }
     </script>
 
     <script>
         $("#createUserButton").click(function() {
             createUser();
         });
-
         $("#loginUserButton").click(function() {
-            loginUser();
+
+            var nomeLogin = document.getElementById('nomeLogin').value;
+            var senhaLogin = document.getElementById('passwordLogin').value;
+
+            loginUser(nomeLogin, senhaLogin);
         });
 
-        var e = window.localStorage.getItem("email");
-        var s = window.localStorage.getItem("senha");
+        var nome = window.localStorage.getItem("nome");
+        var senha = window.localStorage.getItem("senha")
 
-        if (e !== '' && s !== '' && e !== null && s !== null) {
-            loginUser();
+        if (nome !== null && nome !== '' && senha !== null && senha !== '') {
+            loginUser(nome, senha);
         }
-
-        $("#emailLogin").on('keypress', function(e) {
-            if (e.which === 13) {
-                _submit();
-            }
-        });
-
-        $("#passwordLogin").on('keypress', function(e) {
-            if (e.which === 13) {
-                _submit();
-            }
-        });
-
-        $("#emailCreate").on('keypress', function(e) {
-            if (e.which === 13) {
-                _submit();
-            }
-        });
-
-          $("#nomeCreate").on('keypress', function(e) {
-            if (e.which === 13) {
-                _submit();
-            }
-        });
-
-        $("#passwordCreate").on('keypress', function(e) {
-            if (e.which === 13) {
-                _submit();
-            }
-        });
-
     </script>
 </body>
 
