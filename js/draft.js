@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    $("#cabecalho").load("template/header.html");
-    var auth = window.localStorage.getItem("authorization");
+    $("header").load("template/header.html");
+    var auth = window.sessionStorage.getItem("authorization");
     if (auth === null || auth === '') {
         $(location).attr('href', '../index.html');
     }
+
 });
