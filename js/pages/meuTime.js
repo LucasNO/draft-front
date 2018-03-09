@@ -15,15 +15,16 @@ function listMeuTime() {
             $.each(data, function (i, item) {
                 $("#time").append(
                     "<tr>" +
-                    "<td>" + item.nome + "</td>" +
+                    "<td>" + item.nomeJogador + "</td>" +
                     "<td>" + item.overall + "</td>" +
-                    "<td>" + item.pos.descricao + "</td>" +
-                    '<td><button type="button" name="dispensar" id="dispensar" class="btn btn-danger btn-xs" onclick="deletarPosicao(' + item.id + ')">Dispensar</button></td>'
+                    "<td>" + item.posicao + "</td>" +
+                    '<td><button type="button" name="dispensar" id="dispensar" class="btn btn-danger btn-xs" onclick="dispensarPosicao(' + item.idJogador + ')">Dispensar</button></td>'
                 );
             })
         },
         error: function (xhr, status, error) {
-            console.log("error: " + xhr.status);
+//            console.log("error: " + xhr.status);
+            console.log(error);
         }
     }); //ajax
 }
@@ -33,7 +34,7 @@ function dispensarPosicao(id) {
     var auth = window.sessionStorage.getItem("authorization");
     console.log(id);
     $.ajax({
-        type: 'DELETE',
+        type: 'POST',
         //              url: 'https://draft-webservice.herokuapp.com/draft/posicao',
         url: 'http://localhost:8080/draft/dispensar-jogador/' + id,
         contentType: "application/json",

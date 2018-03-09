@@ -20,6 +20,7 @@
                     <th data-field="nome">Nome</th>
                     <th data-field="nome">Posição</th>
                     <th data-field="nome">Overall</th>
+                    <th></th>
                 </tr>
             </thead>
         </table>
@@ -30,35 +31,7 @@
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/draft.js"></script>
-    <script>
-        function listFreeAgents() {
-            var auth = window.sessionStorage.getItem("authorization");
-            $.ajax({
-                type: 'GET',
-                //                url: "https://draft-webservice.herokuapp.com/draft/free-agents",
-                url: "http://localhost:8080/draft/free-agents",
-                dataType: 'json',
-                contentType: 'application/json',
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader("authorization", auth);
-                },
-                success: function(data, textStatus, xhr) {
-                    $.each(data, function(i, item) {
-                        $("#freeAgents").append(
-                            "<tr>" +
-                            "<td>" + item.nome + "</td>" +
-                            "<td>" + item.pos.descricao + "</td>" +
-                            "<td>" + item.overall + "</td>" +
-                            "</tr>")
-                    })
-                },
-                error: function(xhr, status, error) {
-                    console.log("error: " + xhr.status);
-                }
-            }); //ajax
-        }
-
-    </script>
+    <script src="../js/pages/freeAgents.js"></script>
 </body>
 
 </html>
