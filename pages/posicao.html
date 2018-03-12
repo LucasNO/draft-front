@@ -8,12 +8,6 @@
     <title>Posição</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <style>
-        button:hover {
-            background: #e9e9e9;
-            opacity: 0.6;
-        }
-    </style>
 </head>
 
 <body onload="listPosicoes();">
@@ -24,7 +18,8 @@
         <form id='posicaoForm'>
             <div class="form-group"><input id="id" type='number' name='ID' hidden /></div>
             <div class="form-group"><input id="posicao" type='text' name='Posição' placeholder='Nome da Posição' /></div>
-            <div class="form-group"><button class="btn btn-sm btn-success" id="salvar">Salvar</button></div>
+            <div class="form-group"><button class="btn btn-sm btn-success" id="salvar">Salvar</button>
+                <button class="btn btn-sm btn-danger" id="cancelar">Cancelar</button></div>
         </form>
         <table id="posicoes" class="table" cellspacing="0" width="100%">
             <thead class="thead-dark">

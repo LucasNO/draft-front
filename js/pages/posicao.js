@@ -11,6 +11,14 @@ botaoAdicionar.addEventListener("click", function (event) {
     }
 });
 
+var botaoCancelar = document.querySelector("#cancelar");
+botaoCancelar.addEventListener("click", function (event) {
+    $('#posicaoForm').each(function () {
+        this.reset();
+    });
+});
+
+
 function listPosicoes() {
     var auth = window.sessionStorage.getItem("authorization");
     $('#posicoes td').remove();

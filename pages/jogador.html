@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Jogador</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+</head>
+
+<body onload="listJogadores();">
+    <header></header>
+    <div class="container">
+
+        <h3>Cadastrar Novo Jogador</h3>
+
+        <form id="jogadorForm">
+            <div class="form-group">
+                <input id="id" type='number' name='ID' hidden />
+            </div>
+            <div class="form-group">
+                <label for="nomeJogador">Nome do Jogador</label>
+                <input type="text" class="form-control" id="nomeJogador">
+            </div>
+            <div class="form-group">
+                <label for="overall">Overall</label>
+                <input type="number" class="form-control" id="overall">
+            </div>
+			<div class="form-group">
+                <input id="idTime" type='number' name='idTime' hidden />
+            </div>
+			<div class="form-group">
+                <label for="nomeTime">Nome do Time</label>
+                <input type="text" class="form-control" id="nomeTime" disabled>
+            </div>
+            <div class="form-group">
+                <label for="posicoes">Escolha a posição do Jogador</label>
+                <select class="form-control" id="posicoes"></select>
+            </div>
+            <div class="form-group"><button class="btn btn-sm btn-success" id="salvar">Salvar</button>
+                <button class="btn btn-sm btn-danger" id="cancelar">Cancelar</button></div>
+
+        </form>
+
+        <br/>
+        <h3>Jogadores Cadastrados</h3>
+
+        <table id="jogadores" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Jogadores</th>
+                    <th>Overall</th>
+                    <th>Posicao</th>
+                    <th>Time</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+    <!--// .container -->
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/draft.js"></script>
+    <script src="../js/pages/jogador.js"></script>
+    <!--
+    <script>
+        $(document).ready(function() {
+            $('#jogadores').DataTable({
+                "order": [
+                    [1, "desc"]
+                ],
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    },
+                }
+            });
+        });
+    </script>
+-->
+</body>
+
+</html>

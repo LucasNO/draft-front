@@ -15,7 +15,7 @@ function listoutrosTimes() {
             var tabela = "";
             console.log(tabela);
             $.each(data, function (i, item) {
-                tabela += '<h1>' + item.nomeTime + '</h1>' +
+                tabela += '<h2>' + item.nomeTime + '</h2>' +
                 '<table id="time" class="table" cellspacing="0" width="100%">' +
                 '<thead class="thead-dark">' +
                 '<tr>' +
